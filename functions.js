@@ -1,5 +1,5 @@
 //desenhar quadro
-
+//comentario
 function drawBoard(){
     for (let currentRow = 0; currentRow< ROW; currentRow++){
         for(let currentCol = 0; currentCol < COL; currentCol++){
