@@ -89,6 +89,11 @@
     volumeControl.addEventListener("input", function () {
         themeMusic.volume = volumeControl.value;
     });
+
+    // Tentar reproduzir a música ao carregar
+    themeMusic.play().catch(function(error) {
+        console.error("A reprodução automática foi bloqueada pelo navegador.", error);
+    });
 </script>
 </body>
 </html>

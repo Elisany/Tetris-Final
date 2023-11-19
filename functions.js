@@ -8,8 +8,8 @@ function drawBoard(){
         }
     }
 
-    scoreElements.innerHTML = score;
-    speedElement.innerHTML= speed;
+    scoreElement.innerHTML = score;
+    speedElement.innerHTML = speed;
 }
 
 //pintar um quadrado no eixo x e y em determinda cor
@@ -35,15 +35,15 @@ return new Piece(
 }
 
 //função para queda do objeto
-function drop(){
+function drop() {
     const now = Date.now();
     const delta = now - dropStart;
 
-    if (delta > speed){
+    if (delta > (500 - speed * 50)) { // Ajusta o intervalo baseado na velocidade
         piece.moveDown();
         dropStart = Date.now();
     }
-requestAnimationFrame(drop);
+    requestAnimationFrame(drop);
 }
 
 
@@ -87,17 +87,17 @@ const movePiece = moveFunctions[event.code];
 
 //função repintar começar denovo
 function updateRowAndScore(row) {
- for (let y = row; y > 1; y--){
-    for (let currentCol = 0; currentCol < COL; currentCol++) {
-        removeRow(y, currentCol);
+    // Remover a linha completa
+    for (let col = 0; col < COL; col++) {
+        board[row][col] = defaultColor;
     }
- }   
 
- for (let currentCol =0; currentCol < COL; currentCol++){
-    board[0][currentCol] = defaultColor;
- }
-
- score += 10;
+    // Mover todas as linhas acima para baixo
+    for (let y = row; y > 0; y--) {
+        for (let col = 0; col < COL; col++) {
+            board[y][col] = board[y - 1][col];
+        }
+    }
 }
 
 function removeRow(rowToRemove,colToRemove) {
@@ -133,5 +133,5 @@ for (let currentCol = 0; currentCol< COL; currentCol++){
 }
 
 piece = randomPiece();
-drawBoard(); 
+drawBoard();
 }

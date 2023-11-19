@@ -1,7 +1,10 @@
 const cvs = document.getElementById("tetris");
 const ctx = cvs.getContext("2d");
-const scoreElements = document.getElementsByClassName("score");
+const scoreElement = document.getElementById("score");
 const speedElement = document.getElementById("speed");
+
+scoreElement.innerHTML = 0; // Inicializa a pontuação
+speedElement.innerHTML = 1; // Inicializa a velocidade
 
 //tamanho do quadro
 const ROW = 20;
@@ -12,7 +15,8 @@ const defaultBorder ="rgba(255,255,255,0.1)";
 
 
 let canMove = true;
-let speed = 500;// a peça cai a cada meio segundo
+let speed = 0; // Velocidade começa em zero
+speedElement.innerHTML = speed; // Atualiza a exibição da velocidade no HTML
 let dropStart = Date.now();
 let score = 0;
 
